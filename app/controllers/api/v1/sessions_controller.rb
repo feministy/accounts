@@ -9,4 +9,8 @@ class Api::V1::SessionsController < ActionController::API
       render json: { errors: { messages: 'Invalid email or password.' } }, status: :unauthorized
     end
   end
+
+  # DESTROY existing sessions
+  def logout
+  end
 end
