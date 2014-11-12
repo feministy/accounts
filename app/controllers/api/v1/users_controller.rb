@@ -5,7 +5,7 @@ class Api::V1::UsersController < ActionController::API
     if @user.save
       render json: UserSerializer.new(@user)
     else
-      render json: { errors: @user.errors }
+      render json: { errors: @user.errors }, status: :bad_request
     end
   end
 
@@ -24,7 +24,7 @@ class Api::V1::UsersController < ActionController::API
     elsif @user.update_attributes(user_params)
       render json: UserSerializer.new(@user)
     else
-      render json: { errors: @user.errors }
+      render json: { errors: @user.errors }, status: :bad_request
     end
   end
 
