@@ -17,6 +17,12 @@ class Api::V1::UsersController < ActionController::API
 
   # PUT to update a user
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # things
+    else
+      # things - needs authentication
+    end
   end
 
   private
