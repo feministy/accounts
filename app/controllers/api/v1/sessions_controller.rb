@@ -4,6 +4,7 @@ class Api::V1::SessionsController < ActionController::API
     @user = User.find_by_email(params[:email])
     if @user && @user.authenticate(params[:password])
       # create_session
+      session[:current_user_id] = @user.id
       render json: UserSerializer.new(@user)
     else
       render json: { errors: { messages: 'Invalid email or password.' } }, status: :unauthorized
@@ -12,5 +13,6 @@ class Api::V1::SessionsController < ActionController::API
 
   # DESTROY existing sessions
   def logout
+    session[:current_user_id] = nil
   end
 end

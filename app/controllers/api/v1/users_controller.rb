@@ -18,10 +18,13 @@ class Api::V1::UsersController < ActionController::API
   # PUT to update a user
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      # things
+
+    if session[:current_user_id] != @user.id
+      render json: { errors: { messages: 'Must be logged in as the user to perform this action.' } }, status: :unauthorized
+    elsif @user.update_attributes(user_params)
+      render json: UserSerializer.new(@user)
     else
-      # things - needs authentication
+      render json: { errors: @user.errors }
     end
   end
 
