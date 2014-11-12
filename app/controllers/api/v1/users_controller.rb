@@ -5,6 +5,7 @@ class Api::V1::UsersController < ActionController::API
 
   # GET to request a user
   def show
+    @user = User.find(params[:id])
   end
 
   # PUT to update a user
