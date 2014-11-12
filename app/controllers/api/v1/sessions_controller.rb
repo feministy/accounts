@@ -1,9 +1,9 @@
 class Api::V1::SessionsController < ActionController::API
-  # POST to login/auth
-  def create
+  # POST login
+  def login
   end
 
-  # DELETE to logout/deauth
-  def destroy
+  # DELETE logout
+  def logout
   end
 end
