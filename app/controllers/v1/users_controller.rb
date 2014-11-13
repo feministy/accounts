@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ActionController::API
+class V1::UsersController < ActionController::API
   # POST to create a new user
   def create
     @user = User.new(user_params)
